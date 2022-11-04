@@ -88,11 +88,11 @@ def hackerone():
         if program_data['relationships']['structured_scopes']:
             for scope_item in program_data['relationships']['structured_scopes']['data']:
                 if scope_item['attributes']['asset_type'] == 'URL':
-                    if scope_item['attributes']['asset_identifier'][0] == "*":
-                        fqdn_list.append(scope_item['attributes']['asset_identifier'])
-                        print("Domain: " + scope_item['attributes']['asset_identifier'])
+                    clean_url = scope_item['attributes']['asset_identifier'].replace("https://","").replace("http://","")
+                    if clean_url[:2] == "*.":
+                        fqdn_list.append(clean_url)
+                        print("Domain: " + clean_url)
                     else:
-                        clean_url = scope_item['attributes']['asset_identifier'].replace("https://","").replace("http://","")
                         url_list.append(clean_url)
                         print("URL: " + clean_url)
         else:
