@@ -20,8 +20,7 @@ def node_dependencies():
         print("[+] NodeJS is installed")
     else :
         print("[!] NodeJS is NOT installed -- Installing now...")
-        cloning = subprocess.run(["sudo apt-get install -y nodejs npm"], stdout=subprocess.DEVNULL, shell=True)
-        print("[+] NodeJS was successfully installed")
+        subprocess.run(["sudo apt-get install -y nodejs npm"], shell=True)
         node_check2 = subprocess.run(["node --version; npm --version"], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, shell=True)
         if node_check2.returncode == 0:
             print("[+] NodeJS was successfully installed")
